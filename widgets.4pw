@@ -63,7 +63,7 @@
   </Settings>
   <LanguageList version="1.0"/>
   <PlatformList version="1.0"/>
-  <Group label="Group" language="Genero">
+  <Group label="Demos" language="Genero">
     <ExtProject filePath="gl_lib/gl_lib.4pw" id="140990580"/>
     <Application binaryName="widgets" dependencies="14000,1986,140990580_875802101" id="18736" label="widgets">
       <File filePath="src/widgets.4gl"/>
