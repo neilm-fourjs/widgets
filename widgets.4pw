@@ -63,9 +63,9 @@
   </Settings>
   <LanguageList version="1.0"/>
   <PlatformList version="1.0"/>
-  <Group label="Demos" language="Genero">
-    <ExtProject filePath="gl_lib/gl_lib.4pw" id="140990580"/>
-    <Application binaryName="widgets" dependencies="14000,1986,140990580_875802101" id="18736" label="widgets">
+  <Group environment="value:FGLIMAGEPATH=../pics:$(FGLDIR)/lib/image2font.txt,value:FGLRESOURCEPATH=../etc" label="Demos" language="Genero">
+    <ExtProject filePath="gl_lib/gl_lib.4pw" id="1203958399"/>
+    <Application binaryName="widgets" dependencies="14000,1986,140990580_875802101,1203958399_875802101" id="18736" label="widgets">
       <File filePath="src/widgets.4gl"/>
       <File filePath="src/widgets.per"/>
       <File filePath="src/widgets_charts.4gl"/>
