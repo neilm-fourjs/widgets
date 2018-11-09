@@ -64,12 +64,37 @@
   <LanguageList version="1.0"/>
   <PlatformList version="1.0"/>
   <Group environment="value:FGLIMAGEPATH=../pics:$(FGLDIR)/lib/image2font.txt,value:FGLRESOURCEPATH=../etc" label="Demos" language="Genero">
+    <Library binaryName="etc" id="133474981" label="etc">
+      <File filePath="etc/widgets.4ad"/>
+      <File filePath="etc/widgets.4sm"/>
+      <File filePath="etc/widgets.4st"/>
+      <File filePath="etc/widgets.4tb"/>
+      <File filePath="etc/widgets1.4st"/>
+      <File filePath="etc/widgets2.4st"/>
+      <File filePath="etc/widgets3.4st"/>
+      <File filePath="etc/widgets3.4tb"/>
+      <File filePath="etc/widgets_arr.4tb"/>
+    </Library>
     <ExtProject filePath="gl_lib/gl_lib.4pw" id="1203958399"/>
-    <Application binaryName="widgets" dependencies="14000,1986,140990580_875802101,1203958399_875802101" id="18736" label="widgets">
+    <Application binaryName="widgets" dependencies="14000,1986,140990580_875802101,1203958399_875802101,133474981,1523328750" id="18736" label="widgets">
       <File filePath="src/widgets.4gl"/>
       <File filePath="src/widgets.per"/>
       <File filePath="src/widgets_charts.4gl"/>
       <File filePath="src/widgets_clock.4gl"/>
     </Application>
+  </Group>
+  <Group label="Packages" language="Genero">
+    <Library binaryName="gas" excludeFromBuild="true" id="1523328750" label="gas">
+      <File filePath="gas/widgets.xcf"/>
+    </Library>
+    <Package binaryName="widgets" label="widgets" platform="Genero Application Server">
+      <DynamicProperty name="packageId" value="widgets"/>
+      <DynamicProperty name="packageLabel" value="widgets"/>
+      <Directory includedFiles="*.42?" label="bin" sourceDirectory="$(ProjectDir)/bin"/>
+      <Directory label="etc" sourceDirectory="$(ProjectDir)/etc"/>
+      <Directory label="gas" sourceDirectory="$(ProjectDir)/gas"/>
+      <Directory includedFiles="*.42?" label="libbin" sourceDirectory="$(ProjectDir)/gl_lib/bin"/>
+      <Directory label="libetc" sourceDirectory="$(ProjectDir)/gl_lib/etc"/>
+    </Package>
   </Group>
 </Project>
