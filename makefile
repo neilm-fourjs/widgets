@@ -1,16 +1,25 @@
 
-export FGLRESOURCEPATH=../etc
+PROG=widgets
+LIB=gl_lib
+
 export FGLIMAGEPATH=../pics:$(FGLDIR)/lib/image2font.txt
-export FGLLDPATH=../gl_lib/bin
+export FGLRESOURCEPATH=../$(LIB)/etc:../etc
+export FGLLDPATH=../$(LIB)/bin:$(GREDIR)/lib
 
-all: update bin/widgets.42r
+all: bin/$(PROG).42r
 
-bin/widgets.42r:
-	gsmake widgets.4pw
+bin/$(PROG).42r: $(LIB)/bin/$(LIB).42x
+	gsmake $(PROG).4pw
+
+$(LIB)/bin/$(LIB).42x:
+	cd $(LIB) && gsmake $(LIB).4pw
 
 update:
 	git pull
 	git submodule foreach git pull origin master
 
-run: bin/widgets.42r
-	cd bin && fglrun widgets.42r
+run: bin/$(PROG).42r
+	cd bin && fglrun $(PROG).42r
+
+clean:
+	rm bin/* $(LIB)/bin/*	
