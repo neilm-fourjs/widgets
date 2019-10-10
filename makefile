@@ -1,25 +1,23 @@
 
 PROG=widgets
-LIB=gl_lib
+LIB=../g2_lib
+BASE=$(PWD)
+TRG=../njm_app_bin
 
-export FGLIMAGEPATH=../pics:$(FGLDIR)/lib/image2font.txt
-export FGLRESOURCEPATH=../$(LIB)/etc:../etc
-export FGLLDPATH=../$(LIB)/bin:$(GREDIR)/lib
+export FGLIMAGEPATH=$(BASE):$(FGLDIR)/lib/image2font.txt
+export FGLRESOURCEPATH=$(BASE)/etc
+export FGLLDPATH=$(TRG):$(GREDIR)/lib
 
-all: bin/$(PROG).42r
+all: $(TRG)/$(PROG).42r
 
-bin/$(PROG).42r: $(LIB)/bin/$(LIB).42x
+$(TRG)/$(PROG).42r: src/*.4gl src/*.per
 	gsmake $(PROG).4pw
-
-$(LIB)/bin/$(LIB).42x:
-	cd $(LIB) && gsmake $(LIB).4pw
 
 update:
 	git pull
-	git submodule foreach git pull origin master
 
-run: bin/$(PROG).42r
-	cd bin && fglrun $(PROG).42r
+run: $(TRG)/$(PROG).42r
+	cd $(TRG) && fglrun $(PROG).42r
 
 clean:
-	rm bin/* $(LIB)/bin/*	
+	gsmake -c $(PROG).4pw
