@@ -8,12 +8,8 @@
 
 IMPORT util
 
-IMPORT FGL g2_lib
-IMPORT FGL g2_about
-IMPORT FGL g2_appInfo
-IMPORT FGL g2_db
-IMPORT FGL g2_aui
-IMPORT FGL g2_lookup
+IMPORT FGL g2_lib.*
+
 IMPORT FGL widgets_charts
 IMPORT FGL widgets_clock
 
@@ -102,10 +98,10 @@ MAIN
   DEFINE f ui.Form
 
   CALL m_appInfo.progInfo(C_PRGDESC, C_PRGAUTH, C_PRGVER, C_PRGICON)
-  CALL g2_lib.g2_init(ARG_VAL(1), "widgets")
+  CALL g2_core.g2_init(ARG_VAL(1), "widgets")
 
   GL_DBGMSG(2, "init_genero, done.")
-  WHENEVER ANY ERROR CALL g2_lib.g2_error
+  WHENEVER ANY ERROR CALL g2_core.g2_error
 
   LET m_dbname = fgl_getEnv("DBNAME")
 
@@ -304,7 +300,10 @@ MAIN
         LET datetimeedit = CURRENT
         DISPLAY BY NAME timeedit, datetimeedit
 
-      ON ACTION url
+      ON ACTION url1
+        CALL ui.interface.frontCall("standard", "launchURL", "http://www.4js.com/", [tmp])
+
+      ON ACTION url2
         CALL ui.interface.frontCall("standard", "launchURL", "http://www.4js.com/", [tmp])
 
 --      ON ACTION splash
@@ -363,17 +362,17 @@ MAIN
         RUN "fglrun editfile help.txt RH"
 --				CALL show_src("src", "help.txt", "")
 --				MESSAGE "Help!"
---				CALL g2_lib.g2_winmessage("Help", "No Help Available", "info")
+--				CALL g2_core.g2_winmessage("Help", "No Help Available", "info")
 
       COMMAND KEY(F2)
-        CALL g2_lib.g2_winmessage("Information", "This is Information", "info")
+        CALL g2_core.g2_winmessage("Information", "This is Information", "info")
       ON ACTION error
-        CALL g2_lib.g2_errPopup(% "This is an Error")
+        CALL g2_core.g2_errPopup(% "This is an Error")
       ON ACTION error2
-        CALL g2_lib.g2_errPopup(% "This is another Error")
+        CALL g2_core.g2_errPopup(% "This is another Error")
       COMMAND KEY(F19)
         LET m_answer =
-            g2_lib.g2_winquestion(
+            g2_core.g2_winquestion(
                 "My Question",
                 "Did you really mean to ask this?",
                 "Yes",
@@ -500,7 +499,7 @@ MAIN
     END CASE
   END WHILE
   CLOSE WINDOW widgets
-  CALL g2_lib.g2_exitProgram(0, % "Program Finished")
+  CALL g2_core.g2_exitProgram(0, % "Program Finished")
 END MAIN
 --------------------------------------------------------------------------------
 -- Do an input by name on the all the widgets.
@@ -537,13 +536,13 @@ FUNCTION do1()
 
     ON ACTION isTouched
       IF DIALOG.getFieldTouched("formonly.norm") THEN
-        CALL g2_lib.g2_winmessage("Touched?", "norm was touched!", "information")
+        CALL g2_core.g2_winmessage("Touched?", "norm was touched!", "information")
       ELSE
-        CALL g2_lib.g2_winmessage("Touched?", "norm remains untouched.", "information")
+        CALL g2_core.g2_winmessage("Touched?", "norm remains untouched.", "information")
       END IF
 
     ON ACTION help
-      CALL g2_lib.g2_winmessage("Help", "No Help Available", "info")
+      CALL g2_core.g2_winmessage("Help", "No Help Available", "info")
 
     BEFORE INPUT
       DISPLAY "---------- BEFORE INPUT"
@@ -644,9 +643,9 @@ FUNCTION do1()
       DISPLAY 11 TO progress
 
     ON KEY(F17)
-      CALL g2_lib.g2_winmessage("Information", "This is Information", "info")
+      CALL g2_core.g2_winmessage("Information", "This is Information", "info")
     ON KEY(F18)
-      CALL g2_lib.g2_errPopup(% "This is an Error")
+      CALL g2_core.g2_errPopup(% "This is an Error")
   END INPUT
 
 END FUNCTION
@@ -662,7 +661,7 @@ FUNCTION do2()
     BEFORE ROW, INSERT
       MESSAGE "Current Row", arr_curr(), " of ", arr_count(), " LastKey:", fgl_lastKey()
     ON ACTION help
-      CALL g2_lib.g2_winmessage("Help", "No Help Available", "info")
+      CALL g2_core.g2_winmessage("Help", "No Help Available", "info")
 
     AFTER FIELD arr1
       DISPLAY oldarr[1].arr1 TO oldarr[1].arr1 ATTRIBUTE(RED)
@@ -681,7 +680,7 @@ FUNCTION do2()
     BEFORE ROW, INSERT
       MESSAGE "Current Row", arr_curr(), " of ", arr_count(), " LastKey:", fgl_lastKey()
     ON ACTION help
-      CALL g2_lib.g2_winmessage("Help", "No Help Available", "info")
+      CALL g2_core.g2_winmessage("Help", "No Help Available", "info")
 
     ON KEY(F31)
       CALL sort(1, 2)
@@ -702,7 +701,7 @@ FUNCTION do2()
     AFTER DELETE
       DISPLAY "After Delete."
     ON ACTION help
-      CALL g2_lib.g2_winmessage("Help", "No Help Available", "info")
+      CALL g2_core.g2_winmessage("Help", "No Help Available", "info")
 
     AFTER FIELD tabc1
       DISPLAY arr[1].tabc1 TO newarr[1].tabc1 ATTRIBUTE(RED)

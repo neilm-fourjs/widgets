@@ -1,14 +1,25 @@
 <StyleList>
 
-  <!--Style name='StartMenu.startmenu'> Do not work!
+<!-- Does not work! >
+  <Style name='StartMenu'>
     <StyleAttribute name="backgroundColor" value="red"/>
     <StyleAttribute name="textColor" value="red"/>
   </Style-->
+  <Style name="*">
+     <StyleAttribute name="defaultTTFColor" value="buttonText" />
+  </Style>
 
   <Style name="Folder.accordion">
 		<StyleAttribute name="position"  value="accordion" />
   </Style>
-
+	<Style name="Group.collapsed" >
+		<StyleAttribute name="collapsible" value="yes" />
+		<StyleAttribute name="initiallyCollapsed" value="yes" />
+	</Style>
+	<Style name="Group.uncollapsed" >
+		<StyleAttribute name="collapsible" value="yes" />
+		<StyleAttribute name="initiallyCollapsed" value="no" />
+	</Style>
   <Style name='.noborder'>
     <StyleAttribute name="border" value="none"/>
   </Style>
@@ -26,9 +37,18 @@
     <StyleAttribute name="textFormat" value="html"/>
   </Style>
   <Style name='.url'>
+    <StyleAttribute name="textFormat" value="html"/>
+		<!-- StyleAttribute name="buttonType" value="link"/-->
     <StyleAttribute name="border" value="none"/>
     <StyleAttribute name="textColor" value="darkblue"/>
     <StyleAttribute name="textDecoration" value="underline"/>
+  </Style>
+  <Style name='.url2'>
+		<StyleAttribute name="buttonType" value="commandLink"/>
+    <StyleAttribute name="fontSize" value="1.2em"/>
+    <!-- StyleAttribute name="border" value="none"/>
+    <StyleAttribute name="textColor" value="darkblue"/>
+    <StyleAttribute name="textDecoration" value="underline"/-->
   </Style>
   <Style name='DateEdit.parttime'>
     <StyleAttribute name="buttonIcon" value="smiley"/>
@@ -105,18 +125,18 @@
 
   <Style name='Table'>
 		<StyleAttribute name="headerAlignment" value="auto"/>
-    <StyleAttribute name="showGrid" value="0"/>
-    <StyleAttribute name="backgroundColor" value="white"/>
-    <StyleAttribute name="highlightCurrentRow" value="1"/>
     <StyleAttribute name="highlightColor" value="darkRed"/>
     <StyleAttribute name="highlightTextColor"  value="white"/>
-		<StyleAttribute name="fontFamily" value="Calibri" />
 		<StyleAttribute name="fontSize" value="11pt"/>
   </Style>
 
-  <Style name='Table:odd'>
-    <StyleAttribute name='backgroundColor'           value='#D5FFD5'/>
+  <!--Style name='Table.tab1:odd'>
+    <StyleAttribute name='backgroundColor' value='#D5FFD5'/>
+  </Style-->
+  <Style name='Table.tab1:even'>
+    <StyleAttribute name='backgroundColor' value='systemAlternateBackground'/>
   </Style>
+
   <Style name='.tabtitl'>
     <StyleAttribute name='fontSize'                  value='14pt'/>
     <StyleAttribute name='fontStyle'                 value='italic'/>
@@ -140,8 +160,6 @@
   </Style>
 
   <Style name="Window">
-    <!--StyleAttribute name='fontSize' value='1.5em'/-->
-
      <StyleAttribute name="windowType" value="normal" />
   </Style>
   <Style name="Window.main">
@@ -154,6 +172,13 @@
      <StyleAttribute name="ringMenuPosition" value="none" />
      <StyleAttribute name="startMenuPosition" value="tree" />
   </Style>
+	<Style name="Window.centered">
+		<StyleAttribute name="windowType" value="normal" />
+		<StyleAttribute name="actionPanelPosition" value="none" />
+		<StyleAttribute name="ringMenuPosition" value="none" />
+		<StyleAttribute name="sizable" value="no" />
+		<StyleAttribute name="position" value="center" />
+	</Style>
   <Style name="Window.dialog">
      <StyleAttribute name="windowType" value="modal" />
      <StyleAttribute name="sizable" value="no" />
